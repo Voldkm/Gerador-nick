@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>CRIE AQUI O SEU NOME PADRONIZADO!</title>
-<meta name="description" content="Digite seu nome e copie com 🤝 e a fonte estilo Discord (double-struck).">
+<meta name="description" content="Digite seu nome e copie com 🤝 na fonte estilo Discord (double-struck).">
 
 <style>
-  /* Carrega a fonte do próprio repositório */
+  /* === FONTE LOCAL (usa WOFF2 e cai para TTF) === */
   @font-face {
     font-family: 'DoubleStruck';
     src:
@@ -51,8 +51,8 @@
     border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
     display:flex;align-items:center;overflow-wrap:anywhere;
     font-size:clamp(20px,5.6vw,30px);
-    /* força a fonte carregada */
-    font-family: 'DoubleStruck','Segoe UI Symbol',system-ui,sans-serif;
+    /* força a fonte double-struck renderizar */
+    font-family:'DoubleStruck','Segoe UI Symbol',system-ui,sans-serif;
   }
   .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
   .footer{margin-top:14px;display:flex;justify-content:center;gap:10px}
@@ -81,7 +81,7 @@
   </div>
 
 <script>
-  // Mapeamento DOUBLE-STRUCK
+  // Map de A–Z / a–z -> double-struck
   const U_ASC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const L_ASC = "abcdefghijklmnopqrstuvwxyz";
   const U_DST = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ";
@@ -101,7 +101,7 @@
     $preview.textContent = "🤝 " + (raw ? toDoubleStruck(raw) : toDoubleStruck("Seu nome aqui"));
   }
   $nome.addEventListener('input', render);
-  $clearBtn.addEventListener('click', ()=>{ $nome.value=""; render(); $nome.focus(); });
+  $clearBtn?.addEventListener('click', ()=>{ $nome.value=""; render(); $nome.focus(); });
   $copyBtn.addEventListener('click', async ()=>{
     const txt = $preview.textContent.trim();
     if(!txt) return;
@@ -111,6 +111,7 @@
       setTimeout(()=> $copyBtn.textContent=old,1200);
     }catch{ alert("Não foi possível copiar automaticamente. Selecione e copie."); }
   });
+
   render();
 </script>
 </body>
