@@ -6,12 +6,16 @@
 <title>CRIE AQUI O SEU NOME PADRONIZADO!</title>
 <meta name="description" content="Digite seu nome e copie com 🤝 e a fonte estilo Discord (double-struck).">
 
-<!-- Carregar fonte compatível com caracteres double-struck -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
-
 <style>
+  /* Carrega a fonte do próprio repositório */
+  @font-face {
+    font-family: 'DoubleStruck';
+    src:
+      url('double-struck.woff2') format('woff2'),
+      url('double-struck.ttf') format('truetype');
+    font-display: swap;
+  }
+
   :root{
     --bg:#000; --card:#111319; --text:#fff; --muted:#cfd3dc;
     --accent:#ff0950; --input:#f2f3f7; --border:#e6e7ee;
@@ -47,8 +51,8 @@
     border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
     display:flex;align-items:center;overflow-wrap:anywhere;
     font-size:clamp(20px,5.6vw,30px);
-    font-family: 'Noto Sans Math','Segoe UI Symbol','Noto Sans Symbols 2',
-                 'DejaVu Sans','Arial Unicode MS', system-ui, sans-serif;
+    /* força a fonte carregada */
+    font-family: 'DoubleStruck','Segoe UI Symbol',system-ui,sans-serif;
   }
   .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
   .footer{margin-top:14px;display:flex;justify-content:center;gap:10px}
