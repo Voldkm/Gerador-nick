@@ -7,7 +7,7 @@
 <meta name="description" content="Digite seu nome e copie com 🤝 na fonte estilo Discord (double-struck).">
 
 <style>
-  /* === FONTE LOCAL (usa WOFF2 e cai para TTF) === */
+  /* Fonte local: usa WOFF2 como principal e TTF como fallback */
   @font-face {
     font-family: 'DoubleStruck';
     src:
@@ -51,7 +51,6 @@
     border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
     display:flex;align-items:center;overflow-wrap:anywhere;
     font-size:clamp(20px,5.6vw,30px);
-    /* força a fonte double-struck renderizar */
     font-family:'DoubleStruck','Segoe UI Symbol',system-ui,sans-serif;
   }
   .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
@@ -81,7 +80,7 @@
   </div>
 
 <script>
-  // Map de A–Z / a–z -> double-struck
+  // Mapeamento DOUBLE-STRUCK
   const U_ASC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const L_ASC = "abcdefghijklmnopqrstuvwxyz";
   const U_DST = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ";
