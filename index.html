@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CRIE AQUI O SEU NOME PADRONIZADO!</title>
+<meta name="description" content="Digite seu nome e copie com 🤝 e a fonte estilo Discord (double-struck).">
+<style>
+  :root{
+    --bg:#000; --card:#111319; --text:#fff; --muted:#cfd3dc;
+    --accent:#ff0950; --input:#f2f3f7; --border:#e6e7ee;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+    min-height:100svh;display:flex;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .wrap{
+    width:100%;max-width:780px;background:var(--card);
+    border-radius:20px;padding:22px;box-shadow:0 10px 40px rgba(0,0,0,.45);
+  }
+  .top{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;
+  }
+  .brand{
+    font-weight:900;font-size:clamp(16px,4vw,22px);letter-spacing:.4px;
+  }
+  .logo{height:42px;width:auto;object-fit:contain}
+  .title{
+    text-align:center;font-weight:900;margin:6px 0 14px;
+    font-size:clamp(18px,5.4vw,28px);
+  }
+  .subtitle{ text-align:center;color:var(--muted); margin:0 0 18px; }
+  .row{display:flex;gap:10px}
+  input{
+    flex:1;padding:14px 16px;border-radius:14px;background:#0b0d14;color:#fff;
+    border:1px solid #242838;font-size:16px;outline:none;
+  }
+  .btn{
+    background:var(--accent);color:#fff;border:none;border-radius:12px;
+    padding:12px 16px;font-weight:800;cursor:pointer;min-width:112px;text-transform:lowercase;
+  }
+  .preview{
+    background:var(--input);color:#000;border:1px solid var(--border);
+    border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
+    display:flex;align-items:center;overflow-wrap:anywhere;
+    font-size:clamp(20px,5.6vw,30px);
+  }
+  .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
+  .footer{margin-top:14px;display:flex;justify-content:center;gap:10px}
+  .btn-ghost{
+    background:transparent;color:#fff;border:1px solid #303549;
+    border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:600;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">KM • Gerador de Nick</div>
+      <!-- Suba um arquivo chamado km-logo.png no mesmo diretório -->
+      <img class="logo" src="km-logo.png" alt="KM logo" onerror="this.style.display='none'">
+    </div>
+
+    <h1 class="title">CRIE AQUI O SEU NOME PADRONIZADO!</h1>
+    <p class="subtitle">Digite seu nome e copie com 🤝 na fonte estilo Discord.</p>
+
+    <div class="row">
+      <input id="nome" type="text" placeholder="Digite seu nome..." autocomplete="off" />
+      <button id="copyBtn" class="btn">copiar</button>
+    </div>
+
+    <div id="preview" class="preview">🤝 𝕊𝕖𝕦 𝕟𝕠𝕞𝕖 𝕒𝕢𝕦𝕚</div>
+    <div class="hint">Letras A–Z/a–z são convertidas para 𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜; números e emojis permanecem iguais.</div>
+
+    <div class="footer">
+      <button id="clearBtn" class="btn-ghost">limpar</button>
+    </div>
+  </div>
+
+<script>
+  // Mapeamento DOUBLE-STRUCK (estilo “Discord fonts”)
+  const U_ASC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const L_ASC = "abcdefghijklmnopqrstuvwxyz";
+  const U_DST = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ";
+  const L_DST = "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫";
+
+  const map = {};
+  for (let i=0;i<26;i++){ map[U_ASC[i]] = U_DST[i]; map[L_ASC[i]] = L_DST[i]; }
+
+  const $nome = document.getElementById('nome');
+  const $preview = document.getElementById('preview');
+  const $copyBtn = document.getElementById('copyBtn');
+  const $clearBtn = document.getElementById('clearBtn');
+
+  function toDoubleStruck(t){ return t.split('').map(ch => map[ch] ?? ch).join(''); }
+  function render(){
+    const raw = ($nome.value || "").trimStart();
+    $preview.textContent = "🤝 " + (raw ? toDoubleStruck(raw) : toDoubleStruck("Seu nome aqui"));
+  }
+  $nome.addEventListener('input', render);
+  $clearBtn.addEventListener('click', ()=>{ $nome.value=""; render(); $nome.focus(); });
+  $copyBtn.addEventListener('click', async ()=>{
+    const txt = $preview.textContent.trim();
+    if(!txt) return;
+    try{
+      await navigator.clipboard.writeText(txt);
+      const old = $copyBtn.textContent; $copyBtn.textContent="copiado";
+      setTimeout(()=> $copyBtn.textContent=old,1200);
+    }catch{ alert("Não foi possível copiar automaticamente. Selecione e copie."); }
+  });
+  render();
+</script>
+</body>
+</html>
