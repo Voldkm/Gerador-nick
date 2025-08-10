@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>CRIE AQUI O SEU NOME PADRONIZADO!</title>
 <meta name="description" content="Digite seu nome e copie com 🤝 e a fonte estilo Discord (double-struck).">
+
+<!-- Carregar fonte compatível com caracteres double-struck -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --bg:#000; --card:#111319; --text:#fff; --muted:#cfd3dc;
@@ -14,20 +20,13 @@
   body{
     margin:0;background:var(--bg);color:var(--text);
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
-    min-height:100svh;display:flex;align-items:center;justify-content:center;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
     padding:20px;
   }
   .wrap{
     width:100%;max-width:780px;background:var(--card);
     border-radius:20px;padding:22px;box-shadow:0 10px 40px rgba(0,0,0,.45);
   }
-  .top{
-    display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;
-  }
-  .brand{
-    font-weight:900;font-size:clamp(16px,4vw,22px);letter-spacing:.4px;
-  }
-  .logo{height:42px;width:auto;object-fit:contain}
   .title{
     text-align:center;font-weight:900;margin:6px 0 14px;
     font-size:clamp(18px,5.4vw,28px);
@@ -40,13 +39,16 @@
   }
   .btn{
     background:var(--accent);color:#fff;border:none;border-radius:12px;
-    padding:12px 16px;font-weight:800;cursor:pointer;min-width:112px;text-transform:lowercase;
+    padding:12px 16px;font-weight:800;cursor:pointer;min-width:112px;
+    text-transform:lowercase;
   }
   .preview{
     background:var(--input);color:#000;border:1px solid var(--border);
     border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
     display:flex;align-items:center;overflow-wrap:anywhere;
     font-size:clamp(20px,5.6vw,30px);
+    font-family: 'Noto Sans Math','Segoe UI Symbol','Noto Sans Symbols 2',
+                 'DejaVu Sans','Arial Unicode MS', system-ui, sans-serif;
   }
   .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
   .footer{margin-top:14px;display:flex;justify-content:center;gap:10px}
@@ -58,12 +60,6 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="top">
-      <div class="brand">KM • Gerador de Nick</div>
-      <!-- Suba um arquivo chamado km-logo.png no mesmo diretório -->
-      <img class="logo" src="km-logo.png" alt="KM logo" onerror="this.style.display='none'">
-    </div>
-
     <h1 class="title">CRIE AQUI O SEU NOME PADRONIZADO!</h1>
     <p class="subtitle">Digite seu nome e copie com 🤝 na fonte estilo Discord.</p>
 
@@ -81,7 +77,7 @@
   </div>
 
 <script>
-  // Mapeamento DOUBLE-STRUCK (estilo “Discord fonts”)
+  // Mapeamento DOUBLE-STRUCK
   const U_ASC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const L_ASC = "abcdefghijklmnopqrstuvwxyz";
   const U_DST = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ";
