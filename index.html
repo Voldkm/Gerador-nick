@@ -7,12 +7,12 @@
 <meta name="description" content="Digite seu nome e copie com 🤝 na fonte estilo Discord (double-struck).">
 
 <style>
-  /* Fonte local: usa WOFF2 como principal e TTF como fallback */
+  /* Fonte local: usa WOFF2 primeiro e TTF como fallback */
   @font-face {
-    font-family: 'DoubleStruck';
+    font-family: 'NotoSansMathLocal';
     src:
-      url('double-struck.woff2') format('woff2'),
-      url('double-struck.ttf') format('truetype');
+      url('NotoSansMath-Regular.woff2') format('woff2'),
+      url('NotoSansMath-Regular.ttf') format('truetype');
     font-display: swap;
   }
 
@@ -51,7 +51,8 @@
     border-radius:16px;padding:18px;margin-top:16px;min-height:70px;
     display:flex;align-items:center;overflow-wrap:anywhere;
     font-size:clamp(20px,5.6vw,30px);
-    font-family:'DoubleStruck','Segoe UI Symbol',system-ui,sans-serif;
+    /* força a renderização com a fonte que contém os glifos 𝔸…ℤ, 𝕒…𝕫 */
+    font-family:'NotoSansMathLocal','Segoe UI Symbol',system-ui,sans-serif;
   }
   .hint{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
   .footer{margin-top:14px;display:flex;justify-content:center;gap:10px}
@@ -80,7 +81,7 @@
   </div>
 
 <script>
-  // Mapeamento DOUBLE-STRUCK
+  // Mapeamento A–Z / a–z -> double-struck (Unicode Mathematical Double-Struck)
   const U_ASC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const L_ASC = "abcdefghijklmnopqrstuvwxyz";
   const U_DST = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ";
